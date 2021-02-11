@@ -24,6 +24,19 @@ public class Build {
         this.testResult = testResult;
     }
 
+    /**
+     * Special constructor that creates a build object but initializes install/build/test logs by reading from
+     * the generated files from the bash script.
+     * Requeries the existance of .mvn_install.log, .mvn_compile.log mvn_test.log
+     * @param buildID
+     * @param commitHash
+     * @param buildDate
+     * @param branch
+     * @param installStatus
+     * @param buildStatus
+     * @param testStatus
+     * @param savedLocally
+     */
     public Build(int buildID, String commitHash, String buildDate, String branch, String installStatus, String buildStatus, String testStatus, boolean savedLocally){
         String buildDir = (savedLocally) ? "localbuilds/" : "cloudbuilds/";
         String installLog ="", buildLog="", testLog="";
