@@ -96,7 +96,14 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         }
     }
 
-
+    private String prettyPrint(String logs) {
+        StringBuilder sb = new StringBuilder();
+        String[] lines = logs.split("\n");
+        for (String line: lines) {
+            sb.append(line).append("<br>");
+        }
+        return sb.toString();
+    }
 
     /**
      * Fetches information about the build with id "buildID"
@@ -130,15 +137,15 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                         "<div>" +
                             "<h2>Install results</h2>" +
                             "<div style=\"width: 100%; border: 2px solid\">" +
-                                "<p>" + b.getInstallResult().getInstallLogs() + "</p>" +
+                                "<p>" + prettyPrint(b.getInstallResult().getInstallLogs()) + "</p>" +
                             "</div>" +
                             "<h2>Build results</h2>" +
                             "<div style=\"width: 100%; border: 2px solid\">" +
-                                "<p>" + b.getBuildResult().getBuildLogs() + "</p>" +
+                                "<p>" + prettyPrint(b.getBuildResult().getBuildLogs()) + "</p>" +
                             "</div>" +
                             "<h2>Test results</h2>" +
                             "<div style=\"width: 100%; border: 2px solid\">" +
-                                "<p>" + b.getTestResult().getTestLogs() + "</p>" +
+                                "<p>" + prettyPrint(b.getTestResult().getTestLogs()) + "</p>" +
                             "</div>" +
                         "</div>" +
                     "</body>" +
