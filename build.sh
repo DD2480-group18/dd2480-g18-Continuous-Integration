@@ -15,7 +15,7 @@ DD2480_STATUS_COMPILE=$(cat .mvn_compile.log | grep BUILD | sed 's/^.* BUILD \(.
 echo "Compile status: $DD2480_STATUS_COMPILE"
 
 # run tests, log to file, and save status in env variable
-mvn test | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'\(\)*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' > .mvn_test.log
+mvn -DargLine="-DDD2480_TOKEN=$DD2480_TOKEN" test | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'\(\)*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' > .mvn_test.log
 DD2480_STATUS_TEST=$(cat .mvn_test.log | grep BUILD | sed 's/^.* BUILD \(.*\)$/\1/g')
 echo "Test status: $DD2480_STATUS_TEST"
 
@@ -29,4 +29,4 @@ cp .mvn*.log -t ../../../$DD2480_SAVE_DIRECTORY_NAME/$DD2480_BUILD_COMMIT/
 
 # cleanup
 cd ../../..
-rm -rf tmp_build
+rm -rf tmp_build/
