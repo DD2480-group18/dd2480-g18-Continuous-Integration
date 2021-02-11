@@ -18,6 +18,10 @@ public class ContinuousIntegrationServer extends AbstractHandler {
     public static BuildHistory db;
     public static jsonHandler json;
 
+    /**
+     * Initializes the database of builds and the jsonHandler so that
+     * they are usable in the other classes and tests.
+     */
     public ContinuousIntegrationServer() {
         json = new jsonHandler();
         db = json.readBuildHistory();
@@ -107,6 +111,12 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         }
     }
 
+    /**
+     * Converts a raw log String into a String with html line breaks
+     * so that they can be printed more prettily in the browser.
+     * @param logs The raw log as a String, as produced by the build script.
+     * @return The same log but with newline characters replaced by the html br-tag.
+     */
     private String prettyPrint(String logs) {
         StringBuilder sb = new StringBuilder();
         String[] lines = logs.split("\n");
@@ -210,6 +220,11 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         flushResponseWriter(response);
     }
 
+    /**
+     * Returns an html-page that tells the user that the endpoint does not exist.
+     * @param response The servlet response that should return 404 and that was created by the servlet handler.
+     * @throws IOException If the response parameter does not have a valid writer.
+     */
     private void fourOFour(HttpServletResponse response) throws IOException {
         response.setStatus(404);
         response.getWriter().write(
