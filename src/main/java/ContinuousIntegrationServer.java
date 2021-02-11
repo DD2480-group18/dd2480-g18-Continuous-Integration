@@ -4,9 +4,7 @@ import javax.servlet.ServletException;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
-import java.nio.charset.StandardCharsets;
 
-import com.google.gson.JsonParser;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -26,6 +24,19 @@ public class ContinuousIntegrationServer extends AbstractHandler {
     }
 
 
+    /**
+     * The handle method is fired upon every request sent to the server. It has three endpoints:
+     *      * "/": this is where the server receives the GitHub push-event and handles that
+     *      * "/allBuilds": here, the build history is shown, including easy-to-read results
+     *      * "/build/{buildID}": here, detailed results from the build with ID {buildID} are shown, including raw logs
+     *
+     * @param target: the endpoint the request is trying to reach
+     * @param baseRequest: containing the HTTP request in a jetty request object
+     * @param request: containing the HTTP request in a servlet request object
+     * @param response: containing the HTTP response in a servlet response object
+     * @throws IOException: if there is an error when reading from the request reader or writing to the response writer
+     * @throws ServletException: in case there is an error initiating a request/response object
+     */
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
