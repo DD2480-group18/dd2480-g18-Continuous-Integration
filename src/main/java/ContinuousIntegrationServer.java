@@ -3,6 +3,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.nio.charset.StandardCharsets;
 
@@ -180,7 +181,9 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                                 "<th>Build result</th>" +
                                 "<th>Test result</th>" +
                             "</tr>");
-        for (Build b : db.getBuildHistory())
+        ArrayList<Build> builds = db.getBuildHistory();
+        for (int i = builds.size()-1; i >= 0; i--) {
+            Build b = builds.get(i);
             html.append("<tr><td>").append(b.getBuildID()).append("</td>")
                     .append("<td>")
                     .append("<a href=/build/").append(b.getBuildID()).append(">").append(b.getCommitHash()).append("</a></td>")
@@ -190,6 +193,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                     .append("<td>").append(b.getBuildResult().isBuildSuccessfull() ? "Success" : "Failure").append("</td>")
                     .append("<td>").append(b.getTestResult().isTestSuccessfull() ? "Success" : "Failure").append("</td>")
                     .append("</tr>");
+        }
         html.append(
                             "</table>" +
                         "</div>" +
