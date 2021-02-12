@@ -11,10 +11,18 @@ public class jsonHandler {
     private String filePath;
     public static boolean local = true;
 
+    /**
+     * Default constructor with hardcoded file path to database file
+     */
     public jsonHandler(){
         gson = new Gson();
         filePath = "src/main/resources/BuildHistoryDB.json";
     }
+
+    /**
+     * Consturctor with the ability to provide a new filepath for databasefile
+     * @param filePath
+     */
     public jsonHandler(String filePath){
         gson = new Gson();
         this.filePath = filePath;

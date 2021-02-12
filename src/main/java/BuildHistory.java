@@ -3,15 +3,23 @@ import java.util.ArrayList;
 public class BuildHistory {
     private ArrayList<Build> buildHistory;
 
+    /**
+     * Create build history object given arraylist<build>
+     * @param buildHistory
+     */
     public BuildHistory(ArrayList<Build> buildHistory) {
         this.buildHistory = buildHistory;
     }
+
+    /**
+     * Default constructor, init empty arraylist
+      */
     public BuildHistory(){
         buildHistory = new ArrayList<Build>();
     }
 
     /**
-     *
+     * Looks at the last build added and creates a new build id that is 1 larger.
      * @return The first available ID of builds.
      */
     public int getNextBuildID(){

@@ -14,6 +14,16 @@ public class Build {
     private buildResult buildResult;
     private testResult testResult;
 
+    /**
+     * Basic constructor setting all private variables.
+     * @param buildID
+     * @param commitHash
+     * @param buildDate
+     * @param branch
+     * @param installResult
+     * @param buildResult
+     * @param testResult
+     */
     public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult) {
         this.buildID = buildID;
         this.commitHash = commitHash;
@@ -117,6 +127,11 @@ public class Build {
         this.branch = branch;
     }
 
+    /**
+     * Compares an object O to this object to determine equality, does so by looking at all fields
+     * @param o
+     * @return true if o is equal to this, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,6 +140,10 @@ public class Build {
         return buildID == build.buildID && commitHash.equals(build.commitHash) && buildDate.equals(build.buildDate) && branch.equals(build.branch) && installResult.equals(build.installResult) && buildResult.equals(build.buildResult) && testResult.equals(build.testResult);
     }
 
+    /**
+     * Hash of data in object.
+     * @return object hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(buildID, commitHash, buildDate, branch, installResult, buildResult, testResult);
@@ -135,6 +154,11 @@ class buildResult{
     private boolean buildSuccessfull;
     private String buildLogs;
 
+    /**
+     * Basic constructor setting private variables
+     * @param buildSuccessfull
+     * @param buildLogs
+     */
     public buildResult(boolean buildSuccessfull, String buildLogs) {
         this.buildSuccessfull = buildSuccessfull;
         this.buildLogs = buildLogs;
@@ -159,7 +183,11 @@ class buildResult{
         this.buildLogs = buildLogs;
     }
 
-
+    /**
+     * Compares an object O to this object to determine equality, does so by looking at all fields
+     * @param o
+     * @return true if o is equal to this, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,6 +196,10 @@ class buildResult{
         return buildSuccessfull == that.buildSuccessfull && buildLogs.equals(that.buildLogs);
     }
 
+    /**
+     * Hash of data in object.
+     * @return object hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(buildSuccessfull, buildLogs);
@@ -179,6 +211,11 @@ class testResult{
     private String testLogs;
 
 
+    /**
+     * Basic constructor setting private variables
+     * @param testSuccessfull
+     * @param testLogs
+     */
     public testResult(boolean testSuccessfull, String testLogs) {
         this.testSuccessfull = testSuccessfull;
         this.testLogs = testLogs;
@@ -202,7 +239,11 @@ class testResult{
         this.testLogs = testLogs;
     }
 
-
+    /**
+     * Compares an object O to this object to determine equality, does so by looking at all fields
+     * @param o
+     * @return true if o is equal to this, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -211,6 +252,10 @@ class testResult{
         return testSuccessfull == that.testSuccessfull && testLogs.equals(that.testLogs);
     }
 
+    /**
+     * Hash of data in object.
+     * @return object hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(testSuccessfull, testLogs);
@@ -223,6 +268,11 @@ class installResult{
     private boolean installSuccessfull;
     private String installLogs;
 
+    /**
+     * Basic constructor setting private variables
+     * @param installSuccessfull
+     * @param installLogs
+     */
     public installResult(boolean installSuccessfull, String installLogs) {
         this.installSuccessfull = installSuccessfull;
         this.installLogs = installLogs;
@@ -246,7 +296,11 @@ class installResult{
         this.installLogs = installLogs;
     }
 
-
+    /**
+     * Compares an object O to this object to determine equality, does so by looking at all fields
+     * @param o
+     * @return true if o is equal to this, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -255,6 +309,10 @@ class installResult{
         return installSuccessfull == that.installSuccessfull && installLogs.equals(that.installLogs);
     }
 
+    /**
+     * Hash of data in object.
+     * @return object hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(installSuccessfull, installLogs);
